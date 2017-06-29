@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:resources location="/networks/themes/js/jscripts/tiny_mce/themes/advanced/" mapping="/networks/themes/js/jscripts/tiny_mce/themes/advanced/**" />
+	<mvc:resources location="/networks/uploads/" mapping="/networks/uploads/**" />
+	
+	<bean id="sharecontroller" class="com.sas.pdg.mrr.controller.ShareController"/>
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+	
+	<bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
+		<property name="mappings">  
+			<props>  												
+				<!-- user module -->
+				<prop key="/syslogin.htm">sharecontroller</prop> 
+			
+				
+				<!-- gb testing service -->
+				<prop key="/ajaxgbtest.htm">sharecontroller</prop>
+			</props>  
+		</property>  
+	</bean> 
+	 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/networks/jsp/"/>  	
+		<property name="suffix" value=".jsp"/>  
+	</bean> 
+	
+	
+
+</beans>

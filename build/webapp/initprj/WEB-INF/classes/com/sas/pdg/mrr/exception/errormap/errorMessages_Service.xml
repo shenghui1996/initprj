@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errordata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="schema/errorMessages.xsd">
+
+  <component name="Service">
+    <subcomponent name="IdentityService">
+      <errorMessage id="101" severity="MAJOR">
+        <errorText language="en">TODO:no comment.</errorText>
+      </errorMessage>
+    </subcomponent>
+  </component>
+</errordata>
+

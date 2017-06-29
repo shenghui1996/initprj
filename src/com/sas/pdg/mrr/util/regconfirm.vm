@@ -1,0 +1,21 @@
+<html>
+<body style="font-size:14px;font-family:微软雅黑">
+<div>你好，${userdto.fullname}！, 感谢注册<a href="http://www.gearpi.com">光合派 | 创业训练营</a>。</div>
+
+<div style="font-size:14px;padding:20px 15px;margin:15px;border-left:5px solid orange;color:#EB852A">
+  <p>请点击以下链接验证您的电子邮件：</p>
+  <a style="color:#999;" target="_blank" href="http://www.gbtags.com/gb/vericode.htm?vericode=${userdto.vericode}">http://www.gbtags.com/gb/vericode.htm?vericode=${userdto.vericode}</a>
+</div>
+
+
+相关信息
+<hr/>
+<div>
+   用户昵称：<a href="mailto:${userdto.mail}">${userdto.fullname}</a>
+</div>
+<div>
+   电子邮件：<a href="mailto:${userdto.mail}">${userdto.mail}</a>
+</div>
+
+</body> 
+</html>

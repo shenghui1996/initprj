@@ -1,0 +1,230 @@
+<project name="gbtags.com" default="deploy-localhost" basedir=".">
+    <!-- ===================== Property Definitions =========================== -->
+    <property file="build.properties"/>
+    <property file="${user.home}/build.properties"/>
+
+    <!-- ==================== File and Directory Names ======================== -->
+    <property name="app.name" value="${app.name}"/>
+    <property name="build.home" value="${basedir}/build"/>
+    <property name="dist.home" value="${build.home}/dist"/>
+    <property name="webapp.home" value="${build.home}/webapp"/>
+
+    <property name="webapp" value="${webapp.home}/${app.name}"/>
+
+    <property name="src.home" value="${basedir}/src"/>
+    <property name="lib.home" value="${basedir}/lib"/>
+    <property name="sql.home" value="${basedir}/sql"/>
+    <property name="web.home" value="${basedir}/websrc"/>
+    <property name="i18n.home" value="${basedir}/i18n"/>
+	
+	<property name="yuicompressor" value="${basedir}/toollib/yuicompressor-2.4.2.jar"/>
+	
+	<property name="deploy.localhost" value="${server.path}/webapps"/>
+	
+
+    <!--  ==================== Compilation Control Options ==================== -->
+    <!--
+    These properties control option settings on the Javac compiler when it
+    is invoked using the <javac> task.
+
+    compile.debug        Should compilation include the debug option?
+
+    compile.deprecation  Should compilation include the deprecation option?
+
+    compile.optimize     Should compilation include the optimize option?
+    -->
+    <property name="compile.debug" value="true"/>
+    <property name="compile.deprecation" value="false"/>
+    <property name="compile.optimize" value="true"/>
+
+    <!-- ==================== Compilation Classpath =========================== -->
+    <!--
+    Rather than relying on the CLASSPATH environment variable, Ant includes
+    features that makes it easy to dynamically construct the classpath you
+    need for each compilation.  The example below constructs the compile
+    classpath to include the servlet.jar file, as well as the other components
+    that Tomcat makes available to web applications automatically, plus anything
+    that you explicitly added.
+    -->
+    <path id="compile.classpath">
+        <fileset dir="${lib.home}">
+            <include name="*.jar"/>
+        </fileset>
+     </path>
+
+    <!-- ==================== All Target ====================================== -->
+    <!--
+    The "all" target is a shortcut for running the "clean" target followed
+    by the "compile" target, to force a complete recompile.
+    -->
+    <target name="all" depends="clean,compile" description="Clean build and dist directories, then compile"/>
+
+    <!-- ==================== Clean Target ==================================== -->
+    <!--
+    The "clean" target deletes any previous "build" and "dist" directory,
+    so that you can be ensured the application can be built from scratch.
+    -->
+    <target name="clean" description="Delete old build and dist directories">
+        <delete dir="${build.home}"/>
+        <delete dir="${dist.home}"/>
+        <delete dir="${release.home}"/>
+        <delete dir="${webapp.home}"/>
+    </target>
+
+    <target name="prepare">
+        <!-- Create build directories as needed -->
+        <mkdir dir="${build.home}/classes"/>
+ 
+        <!-- Copy static content of this web application -->
+        <mkdir dir="${webapp}"/>
+        <copy todir="${webapp}">
+            <fileset dir="${web.home}"/>
+        </copy>
+    </target>
+
+    <!-- ==================== Compile Target ================================== -->
+    <!--
+    The "compile" target transforms source files (from your "src" directory)
+    into object files in the appropriate location in the build directory.
+    This example assumes that you will be including your classes in an
+    unpacked directory hierarchy under "/WEB-INF/classes".
+    -->
+    <target name="compile" depends="prepare" description="Compile Java sources">
+        <!-- Compile Java classes as necessary -->
+        <javac srcdir="${src.home}" destdir="${build.home}/classes" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+
+        <copy todir="${build.home}/classes">
+           <fileset dir="${src.home}" excludes="**/*.java" />
+        </copy>
+    	
+        <mkdir dir="${build.home}/lib"/>
+    	
+        <!--<jar destfile="${build.home}/lib/website.jar" basedir="${build.home}/classes"/> //-->
+    	<!-- <copy file="${build.home}/lib/website.jar" todir="${webapp}/WEB-INF/lib" /> //-->
+    	
+        <!-- Copy application libraries -->
+        <copy todir="${webapp}/WEB-INF/lib">
+           <fileset dir="${lib.home}" excludes="servlet-api.jar" />
+        </copy>
+    	
+        <copy todir="${webapp}/WEB-INF/classes">
+           <fileset dir="${build.home}/classes" />
+        </copy>    	
+    	
+    </target>
+	
+   	<target name="jscompress" description="compress code">
+        <echo message="Compress JS Code Begin" />
+        <apply executable="java" parallel="false" failonerror="true" dest="${build.home}/webapp/initprj/networks/assets/js">
+            <fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="*.js" excludes="*.min.js" />
+            <arg line="-jar"/>
+            <arg path="${yuicompressor}" />
+            <arg line="--charset utf-8" />
+            <arg line="-o" />
+            <targetfile/>
+            <mapper type="glob" from="*.js" to="*.min.js" />
+        </apply>
+    </target>
+	
+   	<target name="csscompress" description="compress css code">
+        <echo message="Compress CSS Code Begin" />
+        <apply executable="java" parallel="false" failonerror="true" dest="${build.home}/webapp/initprj/networks/assets/css">
+            <fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="*.css" excludes="*.min.css" />
+            <arg line="-jar"/>
+            <arg path="${yuicompressor}" />
+            <arg line="--charset utf-8" />
+            <arg line="-o" />
+            <targetfile/>
+            <mapper type="glob" from="*.css" to="*.min.css" />
+        </apply>
+    </target>	
+	
+	<target name="concat" depends="csscompress,jscompress" description="concat code">
+	    <echo message="Concat Code Files Begin!!!" />
+		
+    	<concat destfile="${build.home}/webapp/initprj/networks/assets/js/all.min.js" encoding="utf-8" fixlastline="on">
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="bootstrap.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="bootstrap-ripples.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="bootstrap-material.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="handlebars-1.3.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="jquery.fileupload.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="json2.min.js" />
+    		
+        	<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="jquery.validationEngine.min.js" />
+        	<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="jquery.validationEngine-zh.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="jquery.imagesloaded.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="moment.2.0.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="moment.zh-cn.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="summernote.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="summernote-zh-CN.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="jquery.cookie.min.js" />
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="spin.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="ladda.min.js" />
+    		
+    		
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="gbfoundation.min.js" />
+    		<fileset dir="${build.home}/webapp/initprj/networks/assets/js" includes="gbmobile.js" />
+    		
+
+
+    		
+    	</concat>	
+		
+		<concat destfile="${build.home}/webapp/initprj/networks/assets/css/all.min.css" encoding="utf-8" fixlastline="on">
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="bootstrap-3.3.5.min.css" />
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="bootstrap-material.min.css" />
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="bootstrap-material-ripples.min.css" />
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="bootstrap-material-igb.min.css" />
+			
+			
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="search.min.css" />
+			<fileset dir="${build.home}/webapp/initprj/networks/assets/css" includes="igb.min.css" />
+        </concat>
+		
+		<!--
+		<delete dir="${build.home}/webapp/initprj/networks/assets/css" includes="*.css" excludes="all.min.css, gbdebugall.min.css, codemirror.min.css"/>
+		<delete dir="${build.home}/webapp/initprj/networks/assets/js" includes="*.js" excludes="respond.min.js, html5shiv.min.js, jresize.min.js, selectivizr-and-extra-selectors.min.js, gbvideosupport.min.js, gbrtcollabration.min.js, gbrtlearning.min.js, gbrtteaching.min.js, gbrtutil.min.js, gbdebugall.min.js, gbmobileall.min.js, jquery-1.7.1.min.js, jquery-ui-1.8.20.custom.min.js,  jquery.gbsearch.min.js, all.min.js" />
+		<delete dir="${build.home}/webapp/initprj/networks/assets/css" includes="*.css" excludes="gbmobile.min.css"/>
+		//--> 
+		
+		<echo message="Concat Code Files Finished!!!" />
+	</target>
+	
+    <target name="quickcompile" description="Compile Java sources">
+        <!-- Compile Java classes as necessary -->
+        <javac srcdir="${src.home}" destdir="${build.home}/classes" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+        
+        <mkdir dir="${build.home}/lib"/>
+        <jar destfile="${build.home}/lib/website.jar" basedir="${build.home}/classes"/>
+
+        <!-- Copy application libraries -->
+        <copy todir="${webapp}/WEB-INF/lib">
+           <fileset dir="${lib.home}" excludes="servlet.jar" />
+        </copy>
+    	
+    	<copy file="${build.home}/lib/website.jar" todir="${webapp}/WEB-INF/lib" />    	
+    </target>
+	
+    <!-- ==================== Deploy Localhost Target ================================== -->
+    <target name="deploy-localhost" depends="compile,concat" description="Deploy gbin1mvc to localhost">
+        <copy todir="${deploy.localhost}">
+            <fileset dir="${webapp.home}" excludes="*.war"/>
+        </copy>
+    </target>
+	
+    <target name="quickdeploy-localhost" depends="quickcompile" description="Deploy gbin1mvc to localhost">
+        <copy todir="${deploy.localhost}/ROOT">
+            <fileset dir="${basedir}/srcweb" excludes="*.war"/>
+        </copy>
+    </target>
+ </project>

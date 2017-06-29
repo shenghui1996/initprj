@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  
+  <display-name>initial project</display-name>
+  <description>startup for DWR projects</description>
+  
+  <filter>
+    <filter-name>sitemesh</filter-name>
+    <filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  </filter>
+  
+  <filter>
+	<filter-name>ActionFilter</filter-name>
+	<filter-class>com.sas.pdg.mrr.filter.ActionFilter</filter-class>
+  </filter> 
+  
+  <filter-mapping>
+    <filter-name>ActionFilter</filter-name>
+    <url-pattern>*.htm</url-pattern>
+  </filter-mapping>    
+  
+  <filter-mapping>
+    <filter-name>sitemesh</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> 
+  
+  <!-- for DWR config -->
+	<servlet>
+	  <servlet-name>systemdispatcher</servlet-name>
+	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	  <load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>scriptCompressed</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowScriptTagRemoting</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+
+		<init-param>
+		  	<param-name>allowGetForSafariButMakeForgeryEasier</param-name>
+		  	<param-value>true</param-value>
+		</init-param> 
+		<init-param>
+			<param-name>initApplicationScopeCreatorsAtStartup</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>maxWaitAfterWrite</param-name>
+			<param-value>500</param-value>
+		</init-param>
+				
+		<load-on-startup>1</load-on-startup>
+	</servlet>  
+
+	<servlet>
+	  <servlet-name>uploadservlet</servlet-name>
+	  <servlet-class>com.sas.pdg.mrr.util.FileUpload</servlet-class>
+	</servlet>
+
+	<servlet>
+	  <servlet-name>nologinuploadservlet</servlet-name>
+	  <servlet-class>com.sas.pdg.mrr.servlet.NoLoginFileUpload</servlet-class>
+	</servlet>
+
+	<servlet>
+	  <servlet-name>downloadservlet</servlet-name>
+	  <servlet-class>com.sas.pdg.mrr.servlet.DownloadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+	  <servlet-name>jsoupparserservlet</servlet-name>
+	  <servlet-class>com.sas.pdg.mrr.servlet.JSoupParserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+	  <servlet-name>captureimgservlet</servlet-name>
+	  <servlet-class>com.sas.pdg.mrr.servlet.CaptureImgServlet</servlet-class>
+	</servlet>
+	
+    <servlet>
+        <servlet-name>GBRSSFeedServlet</servlet-name>
+        <servlet-class>com.sas.pdg.mrr.servlet.GbRssFeedServlet</servlet-class>
+        <init-param>
+            <param-name>default.feed.type</param-name>
+            <param-value>rss_2.0</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>LaituServlet</servlet-name>
+        <servlet-class>com.sas.pdg.mrr.servlet.LaituServlet</servlet-class>
+        <init-param>
+            <param-name>urlPath</param-name>
+            <param-value>laitu</param-value>
+        </init-param> 
+    </servlet>
+    
+    <servlet>
+        <servlet-name>WebRunServletService</servlet-name>
+        <servlet-class>com.sas.pdg.mrr.servlet.CodeRunServiceServlet</servlet-class>
+        <init-param>
+            <param-name>accountList</param-name>
+            <param-value>gbtags:Gbtagsin1,xmangbtags:Gbtagsin1,spidermangbtags:Gbtagsin1</param-value>
+        </init-param> 
+    </servlet>
+    
+    <servlet>
+        <servlet-name>QRCodeServlet</servlet-name>
+        <servlet-class>com.sas.pdg.mrr.servlet.QRCodeServlet</servlet-class>
+        <init-param>
+            <param-name>defaultURL</param-name>
+            <param-value>http://www.gbtags.com</param-value>
+        </init-param> 
+    </servlet>
+    
+	<servlet>
+		<servlet-name>captcha</servlet-name>
+		<servlet-class>com.sas.pdg.mrr.servlet.CaptchaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>pingxxCharge</servlet-name>
+		<servlet-class>com.sas.pdg.mrr.servlet.WebHooksServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>payOrders</servlet-name>
+		<servlet-class>com.sas.pdg.mrr.servlet.WeXinCallBackServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+	  <servlet-name>uploadservlet</servlet-name>
+	  <url-pattern>/ajaxfileuploadservlet.htm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+	  <servlet-name>nologinuploadservlet</servlet-name>
+	  <url-pattern>/ajaxnologinfileupload</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	  <servlet-name>downloadservlet</servlet-name>
+	  <url-pattern>/ajaxdownload.htm</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	  <servlet-name>jsoupparserservlet</servlet-name>
+	  <url-pattern>/ajaxjsoupparser.htm</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	  <servlet-name>captureimgservlet</servlet-name>
+	  <url-pattern>/ajaxcaptureimg.htm</url-pattern>
+	</servlet-mapping>	
+  
+	<servlet-mapping>
+	  <servlet-name>systemdispatcher</servlet-name>
+	  <url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>  
+	
+
+    <servlet-mapping>
+         <servlet-name>GBRSSFeedServlet</servlet-name>
+         <url-pattern>/rssfeed.xml</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+         <servlet-name>LaituServlet</servlet-name>
+         <url-pattern>/laitu/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+         <servlet-name>WebRunServletService</servlet-name>
+         <url-pattern>/webrun</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+         <servlet-name>QRCodeServlet</servlet-name>
+         <url-pattern>/qrcode</url-pattern>
+    </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>captcha</servlet-name>
+		<url-pattern>/gbcaptcha</url-pattern>
+     </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>pingxxCharge</servlet-name>
+		<url-pattern>/pingxxCharge</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>payOrders</servlet-name>
+		<url-pattern>/payOrders</url-pattern>
+	</servlet-mapping>
+
+  <!-- End of GBin1 Networks -->
+
+  <!-- By GBin1 Networks -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/systemdispatcher-service.xml </param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>  
+	
+	<listener>
+		<listener-class>com.sas.pdg.mrr.servlet.OnlineListener</listener-class>
+	</listener> 
+  <!-- End of GBin1 Networks -->	
+  
+  <session-config>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/networks/404.jsp</location>
+  </error-page> 
+
+  <jsp-config>
+  <taglib>
+    <taglib-uri>sitemesh-page</taglib-uri>
+    <taglib-location>/WEB-INF/tlds/sitemesh-page.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>sitemesh-decorator</taglib-uri>
+    <taglib-location>/WEB-INF/tlds/sitemesh-decorator.tld</taglib-location>
+  </taglib>
+  </jsp-config>
+</web-app>

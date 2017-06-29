@@ -1,0 +1,7 @@
+<decorators defaultdir="/networks/themes">
+    <excludes>
+		<pattern>/ajax*</pattern>
+		<pattern>/networks/*</pattern>
+    </excludes>
+	<decorator name="maintpl" page="maintpl/main.jsp" />
+</decorators>

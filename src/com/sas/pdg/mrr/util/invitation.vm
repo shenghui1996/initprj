@@ -1,0 +1,27 @@
+<html>
+<body style="font-size:14px;font-family:'microsoft yahei',Arial,sans-serif;">
+  <div style="padding:10px;">你好，${dto.beinvited}， </div>
+  <div style="padding:10px;">
+          请点击以下邀请码地址注册<a href="http://www.gearpi.com">光合派 | 创业训练营</a>，在这里我们可以分享最棒最炫的极客相关设计作品和资源，方便的使用社区提供的相关各种工具或者应用。包括，课程，协作，教程，在线调试等应用来帮助大家分享知识或者请教问题。
+  </div>
+
+  <div style="padding:10px;">
+  <span style="color:#EB852A">邀请码地址：</span>
+  <a target="_blank" href="http://www.gearpi.com/gb/invite.htm?invcode=${dto.invitationcode}">http://www.gbtags.com/gb/invite.htm?invcode=${dto.invitationcode}</a>
+  </div>
+  
+  <div style="padding:10px;">
+	<div><b>特别提示：</b></div>
+  	官方支持浏览器如下：
+  	<ul>
+  	<li>Firefox</li>
+  	<li>Chrome</li>
+  	<li>Safari</li>
+  	<li>Opera</li>
+  	<li>IE9以上</li>
+  	</ul>
+  	其它浏览器官方没有测试，可能会有出现功能或者界面样式相关问题。 
+
+  </div>
+</body> 
+</html>

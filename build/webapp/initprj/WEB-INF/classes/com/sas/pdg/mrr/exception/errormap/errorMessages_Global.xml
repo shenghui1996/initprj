@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errordata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="schema/errorMessages.xsd">
+
+  <component name="Global">
+    <subcomponent name="System">
+      <errorMessage id="000001" severity="MAJOR">
+        <errorText language="en">System error! Please contact the administrator.</errorText>
+      </errorMessage>
+    </subcomponent>
+  </component>
+
+</errordata>
+

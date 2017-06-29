@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<?xml-stylesheet type="text/xsl" href="SpecialDB.xslt"?>
+<sqlMap namespace="Friend">
+
+	<typeAlias alias="Friend" type="com.sas.pdg.mrr.dto.FriendDTO"></typeAlias>
+	
+	<resultMap id="Friend" class="Friend">
+		<result property="fid" column="fid" />
+		<result property="uid" column="uid" />
+		<result property="truename" column="truename" />
+		<result property="avatar" column="avatar" />
+		<result property="sex" column="sex" />
+	</resultMap>
+
+	<cacheModel id="user-cache" type="OSCACHE">
+		<flushInterval hours="24" />
+		<property name="size" value="1000" />
+	</cacheModel>
+	
+	<insert id="insertFriend" parameterClass="Friend">
+		insert into system_friends (fid, uid, truename, avatar, sex)
+					values (#fid#, #uid#, #truename#, #avatar#, #sex#)
+		<selectKey resultClass="int" type="post" keyProperty="fid" >  
+	        select LAST_INSERT_ID() as value  
+	    </selectKey>  
+	</insert>
+	
+	<select id="findAllFriend" resultClass="Friend">
+		select * from system_friends
+	</select>
+	
+	<update id="updateFriendByUid" parameterClass="Friend">
+		update system_friends
+		set
+			uid = #uid#, 
+			truename = #truename#, 
+			avatar = #avatar#, 
+			sex = #sex#
+		where fid = #fid#
+	</update>
+
+</sqlMap>

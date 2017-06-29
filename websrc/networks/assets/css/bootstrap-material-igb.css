@@ -1,0 +1,171 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: 'microsoft yahei',Arial,sans-serif;
+}
+
+.igwell{
+  border:1px solid rgba(0,0,0,.1);
+  background-color: #fff;
+  padding: 19px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  border: 0;
+}
+
+/* terri updated*/
+
+.nav>li{
+  margin-right:20px;
+}
+
+.text-avatar{
+  color: #06790c;
+  font-weight:500;
+}
+
+.text-avatar i{
+  right:0;
+  top:0;
+  position:absolute;
+  color: #4caf50;
+}
+
+.text-bold{
+  font-weight:400;
+}
+
+.text-lighter{
+  color: rgba(0,0,0,.3);
+}
+
+.navbar-brand {
+	background: url(/ghp/networks/assets/img/logo.png) no-repeat 0% 50%;
+	text-indent: -5000px;
+	width:120px;
+}
+
+.nav>li>a{
+	padding: 5px;
+}
+
+.nav-tabs>li>a{
+	line-height:20px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: #000000;
+}
+
+.nav li p{
+  font-weight:300;
+}
+
+.padall15{
+	padding: 15px;
+}
+
+.pad30 {
+    padding-top: 30px;
+}
+
+.pad20 {
+    padding-top: 20px;
+}
+
+.pad15 {
+    padding-top: 15px;
+}
+
+.pad10 {
+    padding-top: 10px;
+}
+
+.mar8 {
+    margin-top: 8px;
+}
+
+.mar15 {
+    margin-top: 15px;
+}
+
+.mar30 {
+    margin-top: 30px;
+}
+
+.fixheight128{
+	height:128px;
+	overflow:hidden;
+}
+
+.fixheight190{
+	height:190px;
+	overflow:hidden;
+}
+
+.lineheight30{
+	line-height:30px;
+}
+
+#loginform  .input-group{
+	margin-bottom:15px;
+}
+
+#regform  .input-group{
+	margin-bottom:5px;
+}
+
+.panel-body h4{
+	line-height: 35px;
+}
+
+/*回复面板中添加一个小按钮*/
+.cpanel {
+	position:relative;
+}
+.cpanel>.cpanel-heading{
+	background: #fff;
+}
+.cpanel>.cpanel-heading:after,
+.cpanel>.cpanel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.cpanel>.cpanel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+.cpanel>.cpanel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+
+.media-heading{
+	margin-bottom: 3px;
+}
+
+.table-bordered,.table-bordered td{border:0px solid #fff !important}

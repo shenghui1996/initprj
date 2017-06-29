@@ -1,0 +1,26 @@
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+	"http://getahead.org/dwr//dwr20.dtd">
+
+<dwr>
+  <allow>
+  
+    <convert converter="bean" match="com.ibatis.sqlmap.engine.mapping.result.loader.EnhancedLazyResultLoader$EnhancedLazyResultLoaderImpl" />
+    <convert converter="bean" match="java.lang.StackTraceElement" />
+    <convert converter="bean" match="com.sas.pdg.mrr.exception.BusinessException" />
+    <create creator="spring" javascript="identityService">
+      <param name="beanName" value="identityService" />
+      <filter class="com.sas.pdg.mrr.filter.DWRSessionAjaxFilter" />
+    </create>
+    <convert converter="bean" match="com.sas.pdg.mrr.dto.UserDTO" />
+    <convert converter="bean" match="com.sas.pdg.mrr.dto.FriendDTO" />
+ 
+  </allow>
+  <signatures>
+	  <![CDATA[
+	  		import java.util.List;
+		    import java.util.Map;
+		    import com.sas.pdg.mrr.service.impl.IdentityServiceImpl;
+		    List IdentityServiceImpl.findAllUsersByPageForAdmin(Map<String, String>);
+	  ]]>
+  </signatures>
+</dwr>

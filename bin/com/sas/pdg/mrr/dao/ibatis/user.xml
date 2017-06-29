@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<?xml-stylesheet type="text/xsl" href="SpecialDB.xslt"?>
+<sqlMap namespace="User">
+	
+	<typeAlias alias="User" type="com.sas.pdg.mrr.dto.UserDTO" />
+	
+	<resultMap id="UserResult" class="User">   
+		<result property="uid" column="uid"/>    
+		<result property="sitename" column="sitename"/>   
+		<result property="fullname" column="fullname"/> 
+		<result property="truename" column="truename"/> 
+		<result property="avatar" column="avatar"/> 
+		<result property="background" column="background"/> 
+		<result property="university" column="university"/> 
+		<result property="company" column="company"/>   
+		<result property="mail" column="mail"/>
+		<result property="msn" column="msn"/>
+		<result property="qq" column="qq"/>
+		<result property="website" column="website"/>
+		<result property="weibo" column="weibo"/>
+		<result property="password" column="password"/> 
+		<result property="creationdate" column="creationdate"/>   
+		<result property="lastlogindate" column="lastlogindate"/>  
+		<result property="protagflag" column="protagflag"/>   
+		<result property="inttagflag" column="inttagflag"/>  
+		<result property="timelineid" column="timelineid"/> 
+		<result property="deleted" column="deleted"/>  
+		<result property="roleid" column="roleid"/>
+		<result property="selfintro" column="selfintro"/> 
+		<result property="mobile" column="mobile"/>
+		<result property="address" column="address"/>
+		<result property="validatemailcount" column="validatemailcount" />
+		<result property="vericode" column="vericode"/>
+		<result property="expirationdate" column="expirationdate"/>
+		<result property="signature" column="signature"/>
+		<result property="wechat" column="wechat"/>
+		
+		<result property="prjname" column="prjname"/>
+		<result property="prjindustry" column="prjindustry"/>
+		<result property="prjcompany" column="prjcompany"/>
+		<result property="prjaddress" column="prjaddress"/>
+		<result property="prjcity" column="prjcity"/>
+		<result property="prjlawowner" column="prjlawowner"/>
+		<result property="prjstaffnum" column="prjstaffnum"/>
+		<result property="prjstage" column="prjstage"/>
+		<result property="prjmoney" column="prjmoney"/>
+		<result property="prjmoneyhistory" column="prjmoneyhistory"/>
+		<result property="prjteambg" column="prjteambg"/>
+		<result property="prjdesc" column="prjdesc"/>
+		<result property="prjhighlight" column="prjhighlight"/>
+		<result property="prjurl" column="prjurl"/>
+		<result property="prjbp" column="prjbp"/>
+		
+		<result property="agname" column="agname"/>
+		<result property="agaddress" column="agaddress"/>
+		<result property="agmoney" column="agmoney"/>
+		<result property="agfield" column="agfield"/>
+		<result property="agstage" column="agstage"/>
+		<result property="agmoneyrange" column="agmoneyrange"/>
+		<result property="agurl" column="agurl"/>
+		<result property="agdesc" column="agdesc"/>
+		<result property="agcase" column="agcase"/>
+		<result property="agnamecard" column="agnamecard"/>
+		
+	</resultMap>
+	
+	<resultMap id="querythirdUser" class="User">
+		<result property="uid" column="uid"/>
+		<result property="password" column="password"/>
+		<result property="mail" column="mail"/>
+		<result property="fullname" column="fullname"/>
+		<result property="avatar" column="avatar"/>
+		<result property="selfintro" column="selfintro"/>
+		<result property="deleted" column="deleted"/>
+		<result property="creationdate" column="creationdate"/>
+		<result property="lastlogindate" column="lastlogindate"/>
+		<result property="roleid" column="roleid"/>
+		<result property="vericode" column="vericode"/>
+		<result property="totalcoin" column="totalcoin"/>
+		<result property="lastlotterydate" column="lastlotterydate"/>
+		<result property="thirdUId" column="thirduid"/>
+		<result property="channeltype" column="channeltype"/>
+		<result property="tokenId" column="tokenid"/>
+		<result property="headImgUrl" column="headImgUrl"/>
+		<result property="validatemailcount" column="validatemailcount" />
+		<result property="expirationdate" column="expirationdate"/>
+	</resultMap>
+
+	<resultMap id="OtherUserResult" class="User">   
+		<result property="uid" column="uid"/>    
+		<result property="sitename" column="sitename"/>   
+		<result property="fullname" column="fullname"/> 
+		<result property="truename" column="truename"/> 
+		<result property="avatar" column="avatar"/> 
+		<result property="background" column="background"/> 
+		<result property="university" column="university"/> 
+		<result property="company" column="company"/>   
+		<result property="mail" column="mail"/>
+		<result property="msn" column="msn"/>
+		<result property="qq" column="qq"/>
+		<result property="website" column="website"/>
+		<result property="wechat" column="wechat"/>  
+		<result property="weibo" column="weibo"/>  
+		<result property="timelineid" column="timelineid"/> 
+		<result property="roleid" column="roleid"/> 
+		<result property="signature" column="signature"/> 
+		<result property="selfintro" column="selfintro"/> 
+	</resultMap>
+	
+		<resultMap id="AllUser" class="User">
+		<result property="uid" column="uid"/>
+		<result property="sitename" column="sitename"/>
+		<result property="fullname" column="fullname"/>
+		<result property="truename" column="truename"/>
+		<result property="avatar" column="avatar"/>
+		<result property="background" column="background"/>
+		<result property="university" column="university"/>
+		<result property="company" column="company"/>
+		<result property="mail" column="mail"/>
+		<result property="msn" column="msn"/>
+		<result property="qq" column="qq"/>
+		<result property="website" column="website"/>
+		<result property="weibo" column="weibo"/>
+		<result property="password" column="password"/>
+		<result property="creationdate" column="creationdate"/>
+		<result property="lastlogindate" column="lastlogindate"/>
+		<result property="protagflag" column="protagflag"/>
+		<result property="inttagflag" column="inttagflag"/>
+		<result property="timelineid" column="timelineid"/>
+		<result property="deleted" column="deleted"/>
+		<result property="roleid" column="roleid"/>
+		<result property="selfintro" column="selfintro"/>
+		<result property="mobile" column="mobile"/>
+		<result property="thirdUId" column="thirduid"/>
+		<result property="channeltype" column="channeltype"/>
+		<result property="tokenId" column="tokenid"/>
+		<result property="headImgUrl" column="headImgUrl"/>
+		<result property="vericode" column="vericode"/>
+		<result property="lastlotterydate" column="lastlotterydate"/>
+		<result property="sex" column="sex" nullValue="0"/>
+		<result property="address" column="address"/>
+		<result property="disalbesendmsg" column="disalbesendmsg"/>
+		<result property="lastdisalbesendmsgtime" column="lastdisalbesendmsgtime"/>
+		<result property="validatemailcount" column="validatemailcount" />
+		<result property="expirationdate" column="expirationdate"/>
+		<result property="signature" column="signature"/>
+		<result property="wechat" column="wechat"/>
+	</resultMap>
+	
+	<resultMap id="FollowUserResult" class="User">     
+		<result property="fullname" column="fullname"/> 
+	</resultMap>
+
+	<cacheModel id="user-cache" type="OSCACHE">
+		<flushInterval hours="24" />
+		<property name="size" value="1000" />
+	</cacheModel>
+	
+	<select id="queryAllUser" resultClass="User">
+		select * from system_user
+	</select>
+	
+	<select id="queryAllFollowUser" parameterClass="java.lang.String" resultMap="FollowUserResult">
+		select distinct su.fullname from system_user su, system_usertag_follow suf, system_usertag sut
+		where suf.uid = #uid#
+		and suf.usertagid = sut.utid
+		and su.uid = sut.uid
+	</select>
+	
+	<select id="queryAllUsersByPage" parameterClass="java.util.Map" resultClass="User">
+		select uid,avatar,fullname,selfintro,roleid from system_user 
+			where deleted != 1
+			<isNotNull prepend="AND" property="fullname">
+	        	fullname like '%$fullname$%'
+	        </isNotNull>
+			<isNotEqual prepend="AND" compareValue="0" property="roleid">
+	        	roleid != 0
+	        </isNotEqual>
+			order by creationdate desc LIMIT #start#,#offset#
+	</select>
+	
+	<select id="queryAllUsersByPageForAdmin" parameterClass="java.util.Map" resultClass="User">
+		 
+		select * from system_user
+			where
+			deleted = 0
+			<isNotNull prepend="AND" property="fullname">
+	        	(fullname like '%$fullname$%' or mail like '%$fullname$%')
+	        </isNotNull>
+			<isNotNull prepend="AND" property="roleid">
+	        	roleid = #roleid#
+	        </isNotNull>
+			order by creationdate desc 
+			LIMIT #start#,#offset#
+	</select>
+	
+	<select id="queryAllAgsByPage" parameterClass="java.util.Map" resultClass="User">
+		 
+		select * from system_user
+			where
+			<isNotNull prepend="" property="fullname">
+	        	(agname like '%$fullname$%' or agfield like '%$fullname$%')
+	        </isNotNull>
+			<isNotNull prepend="AND" property="roleid">
+	        	roleid = #roleid#
+	        </isNotNull>
+			order by creationdate desc 
+			LIMIT #start#,#offset#
+	</select>
+	
+	<select id="queryAllLastLoginUsersByPageForAdmin" parameterClass="java.util.Map" resultClass="User">
+		select uid,avatar,mail,fullname,selfintro,roleid,creationdate,lastlogindate,totalcoin from system_user 
+			where deleted != 1			
+			order by lastlogindate desc 
+			LIMIT #start#,#offset#
+	</select>
+	
+	<select id="queryAllUsersSize" resultClass="java.lang.Integer">
+		select count(*) from system_user where deleted != 1
+			<isNotNull prepend="AND" property="fullname">
+	        	fullname like '%$fullname$%'
+	        </isNotNull>
+			<isNotEqual prepend="AND" compareValue="0" property="roleid">
+	        	roleid != 0
+	        </isNotEqual>
+	</select>
+	
+	<select id="queryUserByUid" parameterClass="java.lang.String"
+		resultMap="UserResult">
+		select * from system_user where uid=#uid#
+	</select>
+	
+	<select id="queryUserByFullname" parameterClass="java.lang.String"
+		resultMap="UserResult">
+		select * from system_user where fullname=#fullname#
+	</select>	
+	
+	<select id="queryUserByRoleID" parameterClass="java.util.Map" resultClass="User">
+		select * from system_user where roleid!=0
+		and deleted != 1
+			<isNotNull prepend="AND" property="fullname">
+	        	fullname like '%$fullname$%'
+	        </isNotNull>
+	    order by creationdate desc LIMIT #start#,#offset#
+	</select>		
+	
+	<select id="queryOtherUserByUid" parameterClass="java.lang.String"
+		resultMap="OtherUserResult">
+
+		select uid, mail, sitename, fullname, truename, avatar, background, university, company, msn, website, qq, wechat, weibo, timelineid, roleid, selfintro,signature from system_user where uid=#uid#
+
+	</select>	
+
+	<select id="queryUserBySiteName" parameterClass="java.lang.String"
+		resultMap="OtherUserResult">
+
+		select uid,mail, sitename, fullname,truename, avatar, background, university, company, msn, website, qq, wechat, weibo, timelineid,  roleid,selfintro,signature from system_user where sitename=#sitename#
+
+	</select>
+
+	<select id="queryUsersByUserNames" resultMap="UserResult" parameterClass="list">
+		select * from system_user where fullname in
+		  <iterate open="(" close=")" conjunction=",">
+		   #[]#
+		  </iterate>
+	</select>
+	
+	<select id="queryUsersByUserIds" resultMap="UserResult" parameterClass="list">
+		select * from system_user where uid in
+		  <iterate open="(" close=")" conjunction=",">
+		   #[]#
+		  </iterate>
+	</select>
+	
+	<select id="queryUserByFullnameAndEmail" parameterClass="User" resultClass="User">
+		select * from system_user where fullname=#fullname# and mail = #mail#
+	</select>	
+	
+	<select id="queryAllRecommendUsersForLoginUser" parameterClass="java.util.Map" resultClass="User">
+		select *, su.roleid!=0 as roleid from system_user su 
+		where su.uid not in 
+		(select distinct sut.uid from system_usertag sut, system_usertag_follow suf 
+			where sut.utid = suf.usertagid and suf.uid = #uid# and suf.deleted = 0
+		)
+		and su.uid != #uid#
+		order by roleid desc LIMIT #start#,#offset#
+	</select>
+
+	<select id="queryVericodeByUid" parameterClass="java.lang.String" resultClass="User">
+		select vericode,fullname,mail from system_user where uid = #uid#
+	</select>	
+
+	<update id="updateByUid" parameterClass="User" >
+		update system_user 
+		set 
+			fullname = #fullname#,
+			truename = #truename#,
+			university = #university#,
+			company = #company#,
+			qq = #qq#,
+			msn = #msn#,
+			weibo = #weibo#,
+			wechat = #wechat#,
+			signature = #signature#,
+			website = #website#,
+			selfintro = #selfintro#
+		where uid = #uid#
+	</update>
+	
+	<update id="updateUserWizardByUid" parameterClass="User" >
+		update system_user 
+		set 
+			mail = #mail#,
+			avatar = #avatar#,
+			fullname = #fullname#,
+			signature = #signature#
+		where uid = #uid#
+	</update>
+	
+	<update id="updatePasswordByUid" parameterClass="User" >
+		update system_user 
+		set 
+			password = #password#
+		where uid = #uid#
+	</update>	
+	
+	<update id="updateAvatarByUid" parameterClass="User" >
+		update system_user 
+		set avatar = #avatar#
+		where uid = #uid#
+	</update>	
+	
+	<update id="updateBackgroundByUid" parameterClass="User" >
+		update system_user 
+		set background = #background#
+		where uid = #uid#
+	</update>
+
+	<update id="updateUserIntTagFlagByUid" parameterClass="User" >
+		update system_user 
+		set inttagflag = #inttagflag#
+		where uid = #uid#
+	</update>
+	
+	<update id="updateUserProTagFlagByUid" parameterClass="User" >
+		update system_user 
+		set protagflag = #protagflag#
+		where uid = #uid#
+	</update>
+
+	<update id="updateSiteNameByUid" parameterClass="User" >
+		update system_user 
+		set sitename = #sitename#
+		where uid = #uid#
+	</update>
+	
+	<update id="updateLastloginDateByUid" parameterClass="User" >
+		update system_user 
+		set lastlogindate = #lastlogindate#
+		where uid = #uid#
+	</update>	
+	
+	<update id="updateTimelineIDByUid" parameterClass="User" >
+		update system_user 
+		set timelineid = #timelineid#
+		where uid = #uid#
+	</update>
+	
+	<update id="updateRoleidByUid" parameterClass="User" >
+		update system_user 
+		set roleid = #roleid#
+		where uid = #uid#
+	</update>
+
+	<update id="updateUserByVericode" parameterClass="java.lang.String" >
+		update system_user 
+		set deleted = 0
+		where vericode = #vericode# and deleted=-1
+	</update>
+	
+	<update id="updateUserTotalCoinByUid" parameterClass="User" >
+		update system_user 
+		set totalcoin= totalcoin + #totalcoin#
+		where uid = #uid#
+	</update>
+	
+	<update id="updateUserLastLotteryDateByUid" parameterClass="java.lang.Integer" >
+		update system_user set lastlotterydate=now() 
+		where
+		to_days(lastlotterydate) <![CDATA[ < to_days(now()) ]]>
+		and uid = #uid#
+	</update>
+
+	<select id="queryUserLotteryByUid" parameterClass="java.lang.String" resultClass="User">
+		select * from system_user
+		where
+		to_days(lastlotterydate) <![CDATA[ < to_days(now()) ]]>
+		and uid = #uid#
+	</select>
+	
+	<select id="queryUserByMail" parameterClass="java.lang.String"
+		resultMap="UserResult">
+		select * from system_user where mail=#mail#
+	</select>
+	
+	<insert id="insertUser" parameterClass="User" >		
+		insert into system_user (uid, fullname, mail, company, university, password, deleted, creationdate, lastlogindate, roleid, vericode, totalcoin, lastlotterydate)
+	    values (#uid#, #fullname#, #mail#, #company#, #university#, #password#, #deleted#, #creationdate# , #lastlogindate#, #roleid#, #vericode#, 0, #lastlotterydate# )
+	    <selectKey resultClass="int" type="post" keyProperty="uid" >  
+	        select LAST_INSERT_ID() as value  
+	    </selectKey>   
+	</insert>
+	
+	<select id="queryThirdId" parameterClass="java.lang.String" resultClass="java.lang.String">
+		select thirduid from SYSTEM_USER  where uid =#uid# and deleted =#deleted#
+	</select>
+	
+	<select id="queryUserByAccountId" parameterClass="java.util.Map"
+			resultMap="UserResult">
+		select * from system_user where $loginAccount$=#accountId# and deleted !=#deleted#
+	</select>
+	
+	<insert id="insertThirdPatryUser" parameterClass="User">
+		insert into system_user (uid, fullname,password, deleted, creationdate, lastlogindate, roleid, vericode,totalcoin, lastlotterydate,thirduid,channeltype,tokenid,headImgUrl)
+		values (#uid#, #fullname#,'', #deleted#, #creationdate# , #lastlogindate#, #roleid#, #vericode#, 0,#lastlotterydate#,#thirdUId#,#channeltype#,#tokenId#,#headImgUrl# )
+		<selectKey resultClass="int" type="post" keyProperty="uid">
+			select LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+	<select id="queryTokenUser" parameterClass="java.lang.String" resultMap="querythirdUser">
+		SELECT  uid, fullname,password, deleted, mail, selfintro, avatar,creationdate, lastlogindate, roleid, vericode,totalcoin, lastlotterydate,thirduid,channeltype,tokenid,headImgUrl,validatemailcount,expirationdate FROM  SYSTEM_USER  WHERE  thirdUId = #thirdUId# and deleted !=1
+	</select>
+	<update id="updateTokenUserByThridUid" parameterClass="User">
+		update SYSTEM_USER  set tokenId= #tokenId#,lastlogindate=now() where thirduid =#thirdUId# and deleted !=1
+	</update>
+
+	<update id="updateValidateEmailCount" parameterClass="User">
+		update SYSTEM_USER  set validatemailcount=#validatemailcount# where mail =#mail#
+	</update>
+
+	<update id="updateEndDate" parameterClass="java.util.Map">
+		UPDATE  SYSTEM_USER  SET expirationdate=#expirationdate# where uid=#uid#
+	</update>
+	
+	<update id="updateUserBaseInfoByUid" parameterClass="User" >
+		update system_user
+		set
+		fullname = #fullname#,
+		truename = #truename#,
+		university = #university#,
+		company = #company#,
+		qq = #qq#,
+		weibo = #weibo#,
+		sitename = #sitename#,
+		website = #website#,
+		selfintro = #selfintro#,
+		signature = #signature#,
+		wechat = #wechat#,
+		address = #address#
+	<!--
+		验证手机时即数据库已存入手机号,因此无需保存手机号
+		mobile = #mobile#
+		-->
+    where uid = #uid#
+	</update>
+
+	<update id="updatePrjInfoByUid" parameterClass="User">
+		update SYSTEM_USER set 
+			prjname =  #prjname#,
+			prjindustry =  #prjindustry#,
+			prjcompany =  #prjcompany#,
+			prjaddress =  #prjaddress#,
+			prjcity =  #prjcity#,
+			prjlawowner =  #prjlawowner#,
+			prjstaffnum =  #prjstaffnum#,
+			prjstage =  #prjstage#,
+			prjmoney =  #prjmoney#,
+			prjmoneyhistory =  #prjmoneyhistory#,
+			prjteambg =  #prjteambg#,
+			prjdesc =  #prjdesc#,
+			prjhighlight =  #prjhighlight#,
+			prjurl =  #prjurl#,
+			prjbp =  #prjbp#
+		where uid = #uid#	
+	</update>
+	
+	<update id="updateAgInfoByUid" parameterClass="User">
+		update SYSTEM_USER set 
+			agname =  #agname#,
+			agaddress =  #agaddress#,
+			agmoney =  #agmoney#,
+			agfield =  #agfield#,
+			agstage =  #agstage#,
+			agmoneyrange =  #agmoneyrange#,
+			agurl =  #agurl#,
+			agdesc =  #agdesc#,
+			agcase =  #agcase#,
+			agnamecard =  #agnamecard#,
+			truename = #truename#,
+			mobile = #mobile#,
+			wechat = #wechat#,
+			company = #company#
+		where uid = #uid#	
+	</update>
+</sqlMap>
